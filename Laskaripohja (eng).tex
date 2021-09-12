@@ -1,0 +1,152 @@
+\documentclass[a4paper, twoside, 12pt]{artikel3} %jos artikel3 ei toimi, käytä article
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel} %katso että kääntäjä osaa kans tavuttaa, jos useita kieliä, default-kieli viimeiseksi
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{icomma} %käytä pilkkua kaavoissa ja taulukoissa
+\usepackage{enumerate}
+\usepackage[hmargin={35mm, 35mm}, vmargin={25mm, 25mm}]{geometry} %en ole varma tarviiko
+\usepackage{hyperref} %pdf-tiedostoon viittaukset hyperlinkkeinä, linkkien ympärille tulevat jutut eivät tule tulosteeseen.
+\usepackage{verbatim} %pitkiin kommentteihin...
+\usepackage{url} %jotta LaTeX ymmärtää url-osoitteet (\url-komento)
+\usepackage{graphicx}
+
+
+\newcommand{\degree}{^{\circ}} %Astemerkki matematiikkatilassa
+\renewcommand{\vec}{\mathbf} %Vektorin ylänuolen sijasta vektorit lihavoituna
+\newcommand{\doo}{\partial}
+\newcommand{\dee}{\mathrm{d}}
+\newcommand{\email}{\href{mailto:olli.vaisanen@helsinki.fi}{olli.vaisanen@helsinki.fi}} %Oma email-osoite komentona :)
+\newcommand{\emailto}[1]{\href{mailto:#1}{#1}}
+\renewcommand{\dateseparator}{.} %Vaihtaa \today-komennon päivämääräerotinta (datetime-paketin default on '/' )
+\newcommand{\kaari}[1]{\left( #1 \right)}
+\newcommand{\aalto}[1]{\left{ #1  \right}}
+\newcommand{\haka}[1]{\left[ #1 \right]}
+
+
+\begin{document}
+
+\pagestyle{empty} 
+\pagenumbering{none}
+[NAME OF THE COURSE] \hfill Name: Olli Väisänen\\%Kurssin nimi
+[Spring/Fall 20XX] \hfill e-mail: \href{mailto:olli.vaisanen@helsinki.fi}{olli.vaisanen@helsinki.fi} \\
+Exercise  \hfill  Student id: 013326836 \\%HARJOITUKSEN NUMERO!
+
+\begin{enumerate}[Prob. 1.] \itemsep12pt
+	\item %Tehtävä 1, seuraavat tehtävät jälleen itemeinä.
+		%\begin{enumerate}[(a)] \itemsep8pt
+			%Tähän tehtävän osat a), b), c), etc. itemeinä.
+				%\begin{enumerate}[(i)] \itemsep6pt
+					%Jos tehtävällä vielä aliosia, niin jatketaan enumerateja...
+				%\end{enumerate}
+		%\end{enumerate}
+\end{enumerate}
+
+\begin{comment}
+Kappaleen vaihto tyhjällä rivillä!:
+
+Jos jossain kohdassa ei saa vaihtaa riviä, käytä tildeä välilyönnin sijaan:~
+Esim: Tulokseksi saatiin~23~metriä~\cite{MAOL}~.
+
+Dokumentin sisäiset viitteet:
+\label{avain}-komennolla voidaan kuvien ja kaavojen ym. lisäksi labeloida melkein kaikkea (esim. kokonaisia kappaleita, osioita, ym.).
+Labelin kohteeseen voidaan viitata \ref{avain}-komennolla. \eqref{eq:avain} kaavoille (laittaa sulut viittauksen ympärille)
+
+Leijuvat kuvat:
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{Scarlett.png}
+	\end{center}
+	\caption{Oh Scarlett! $\heartsuit$}
+	\label{fig:Scarlett}
+\end{figure}
+
+
+Matematiikka:
+
+Tekstin osana:
+Komennolla $Matematiikkaa...$ saadaan matematiikkaa ladottuna tekstin sekaan
+
+Erillisinä kaavoina:
+\begin{equation} 
+	\label{eq:avain}
+	Matematiikkaa...
+\end{equation}
+Kaava sijoitetaan erikseen ja numeroidaan. Numeroimaton versio saadaan equation*:llä. 
+Kaavaan viitataan: \eqref{eq:avain}, esim: ...keskiarvo saadaan kaavalla~\eqref{eq:karvo}~.
+Kaavaan saadaan tarvittaessa tekstin tavoin muotoiltuja merkkejä (esim. pilkku ennen missä-sanaa)
+komennolla \text{teksti}, esim: \text{,}
+Monen rivin kaava saadaan käyttämällä multiline-ympäristöä equation-ympäristön sijaan. Monen rivin kaavassa voidaan
+vaihtaa riviä \\-komennolla
+
+\begin{align} 
+	3x+2y&=3\\
+	-2x&=4y+7\notag %notagilla voidaan jättää yksi yhtälö numeroimatta
+\end{align} %align-ympäristöllä saa kohdistettuja yhtälöryhmiä, &-merkillä merkitään kohdistuskohta, \\ vaihtaa riviä numeroi yhtälöt, align*-ympäristö jättää kaikista numeroinnit
+
+f(x) =
+\begin{cases} 
+0 & \text{ jos } x<0 \\
+x & \text{ jos } 0\le x \le 0 \\
+1 & \text{ jos } 1 > x
+\end{cases} 
+%cases-ympäristöllä saadaan paloittain määritelty funktio, sitä pitää käyttää jonkin toisen matikkaympäristön sisällä. Huomaa kiinnitysmerkit & sekä välit \text-komennon sisällä
+
+\begin{pmatrix}
+a & b & c \\
+d & e & f
+\end{pmatrix} 
+%pmatrix luo matriisin (pyöreät sulut), bmatrix tekee hakasulkumatriiseja, etc
+
+\left(\begin{array}{c|cc}
+a & b & c \\
+\hline d & e & f
+\end{array}\right) %array on vanha tapa luoda matriiseja, sillä saadaan mm. lohkomatriiseja edellä esitetyllä tavalla
+
+Matematiikan komentoja:
+\: -komennolla saadaan matikkatilassa pienen välin merkkien väliin
+\, \quad ja \qquad antavat eripituisia välejä matikkatilassa, \! vähentää merkkien välistä tilaa, voidaan käyttää esim moni-integraalien kanssa tiivistämään merkintöjä, esim: \int\!\!\!\int
+Kreikkalaiset aakkoset: \ja aakkosen englanninkielinen nimi. Isolla alkukirjaimella iso, pienellä pieni aakkonen
+Esim: \alpha pikkualfalle, \Delta isolle deltalle
+_ alaindekseille ja ^ yläindekseille, voi yhdistellä vapaasti, eivät mene sekaisin. Pidemmät jutut aaltosulkuihin.
+Esim: x^2_{max}
+\infty äärettömän merkille
+Murtoluvut ja jakolaskut: \frac{}{}, aaltosulkuihin viivan ylä- ja alapuolille tulevat jutut. Osaa venyä fiksusti.
+Summamerkki: \sum_{alaindeksi}^{yläindeksi}
+Neliöjuuri: \sqrt{}, venyy järkevästi
+Järkevästi venyvät sulut: \left(, \right) sekä \left[, \right] ja \left{, \right}  
+Keskiarvoa merkitsevä viiva kirjaimen päälle: \bar{}
+Plusmiinus: \pm
+Noin yhtäsuuri kuin: \approx
+Pienempi tai yhtäsuuri kuin(?): \le
+Kertomerkki näkyviin: \times
+Doo-merkki: \partial
+Sopivasti venyvät merkit: \right ja \left (esim. \right), \left[, \right/, etc) pisteellä (.) voi rajata merkkiä 
+
+Kolme pistettä: \ldots
+
+
+Omien komentojen luonti:
+\newcommand{\RR}{\mathbb{R}} %voidaan luoda vain "lyhennysmerkkejä" TAI
+\newcommand{\MB}[2]{\mathbb{#1}-\mathbb{#2}} %näin voidaan luoda "funktion tavoin" toimivia komentoja. Hakasuluissa on argumenttien määrä ja #-merkillä merkataan argumenttinä saadut muuttujat
+Käyttö: Ensimmäiselle normaali \RR, jälkimmäiselle esim. \MB{R}{Y} (tässä tapauksessa matikkatilassa)
+
+\selectlanguage{english} %Vaihda kieltä kesken dokumentin.
+
+\url{http://en.wikipedia.org/wiki/Scarlett_Johansson} %lisää linkin nettiosoitteeseen, komento tulee hyperref-paketissa
+
+\footnote{Sivuhuomautus} %sivun sisäinen viite
+
+Numeroimattomat listat:
+\begin{itemize} %itemize-ympäristössä listan kohdan eteen tulevaa merkkiä voi muuttaa item-kohtaisesti hakasulkeisiin tulevalla merkillä (ks. seuraavassa)
+\item[-] Esko
+\item[a] on 
+\item kiki 
+\end{itemize}
+
+
+\end{comment}
+
+\end{document}
