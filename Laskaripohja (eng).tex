@@ -22,6 +22,7 @@
 	per-mode = symbol-or-fraction, %käyttää yksiköiden kuten m/s välissä symbolia / line mathissa ja \frac:ia matematiikkatilassa
 	%range-phrase = {--},	%defaultina lukuvälit ilmoitetaan "2 to 10"
 	separate-uncertainty = true}	%tuloksen epävarmuus erillisenä, esim. (12.3 ± 0.4) kg
+\DeclareSIUnit\Aa{\text{Å}}	%Å ei ole enää SI-yksikkö, joten siunitx-paketti kikkaa komennon \angstrom käytöstä. Määritellään oma
 
 \newcommand{\degree}{^{\circ}} %Astemerkki matematiikkatilassa
 \renewcommand{\vec}{\mathbf} %Vektorin ylänuolen sijasta vektorit lihavoituna
@@ -33,6 +34,8 @@
 \newcommand{\kaari}[1]{\left( #1 \right)}
 \newcommand{\aalto}[1]{\left{ #1  \right}}
 \newcommand{\haka}[1]{\left[ #1 \right]}
+
+\newcommand{\LAMMPS}{\textsf{LAMMPS} }
 
 \pagestyle{head}	%HUOM! jos käyttää ilma pagenumberingia (none), niin exam documentclass menee rikki (haluaa käyttää numerointia monessa komennossa...), empty toimii
 \firstpageheader{[NAME OF THE COURSE]\\	%headerin vasen laita
