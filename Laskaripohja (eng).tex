@@ -17,6 +17,11 @@
 \usepackage{verbatim} %korjaa verbatim-ympäristön bugeja ja lisää comment-ympäristön pitkille kommenteille
 \usepackage[footnotesize, bf]{caption} %kuvien ja taulukoiden kuvatekstin muokkaus (esim. pienempi fontti, lihavointi)
 \usepackage{datetime} %muuttaa today-komennon muotoilua
+\usepackage{siunitx} %numeroiden ja erityisesti yksiköiden muotoilu konsistentiksi, katso ohjeita lopusta, toimii sekä matematiikkatilassa että tekstissä
+\sisetup{	%siunitx-paketin asetukset vaativat suomenkielessä vähän säätöä
+	per-mode = symbol-or-fraction, %käyttää yksiköiden kuten m/s välissä symbolia / line mathissa ja \frac:ia matematiikkatilassa
+	%range-phrase = {--},	%defaultina lukuvälit ilmoitetaan "2 to 10"
+	separate-uncertainty = true}	%tuloksen epävarmuus erillisenä, esim. (12.3 ± 0.4) kg
 
 \newcommand{\degree}{^{\circ}} %Astemerkki matematiikkatilassa
 \renewcommand{\vec}{\mathbf} %Vektorin ylänuolen sijasta vektorit lihavoituna
@@ -132,6 +137,12 @@ Doo-merkki: \partial
 Sopivasti venyvät merkit: \right ja \left (esim. \right), \left[, \right/, etc) pisteellä (.) voi rajata merkkiä 
 
 Kolme pistettä: \ldots
+
+SI-yksiköiden muotoilu (siunitx-paketti)
+Numerot: \num{3.145}, \numlist{10;30;50;70}, \numrange{10}{30}
+Yksiköt: \unit{kg.m/s^2} tai \unit{\kilo\gram\metre\per\square\second}
+Molemmat: \qty{1.23 +- 0.5}{J.mol^{-1}.K^{-1}}  HUOM! myös epävarmuuden ilmoittaminen
+Myös monimutkaisempia yhdistelmiä löytyy, kuten \qtylist, \qtyproduct ja \qtyrange
 
 
 Omien komentojen luonti:
