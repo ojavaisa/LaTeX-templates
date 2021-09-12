@@ -1,17 +1,15 @@
 \documentclass[a4paper, twoside, 12pt]{artikel3} %jos artikel3 ei toimi, käytä article
 
-
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[finnish]{babel} %katso että kääntäjä osaa kans tavuttaa, jos useita kieliä, default-kieli viimeiseksi
 \usepackage{lmodern} %hiukan uudempi, parempi versio LaTeXin perusfontista
 \usepackage{textcomp} %tarjoaa ylimääräisiä tekstisymboleja, kuten \texteuro, \textcelsius
-\usepackage{amsmath} %American mathematical societyn parannus matikkapakettiin
-\usepackage{amssymb} %Lisää matikkasymboleita...
+\usepackage{mathtools, amssymb} %uudempi matematiikkapaketti mathtools (sisältää amsmathin), amssymb lisää matikkasymboleita
 \usepackage{amsfonts}
 \usepackage{icomma} %käytä pilkkua kaavoissa ja taulukoissa (Suom. käytäntö)
 \usepackage{cancel} %Termien yliviivaus matematiikkatilassa (komennolla \cancel{})
-\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem} %enumitem korvaa vanhentuneen enumeraten, shortlabels mahdollistaa labelien muokkauksen
 \usepackage[hmargin={35mm, 35mm}, vmargin={25mm, 25mm}]{geometry} %marginaalien säätöä...
 \usepackage[pdftex]{graphicx} %kuvaajapaketti
 \usepackage[pdftex]{color} %mahdollistaa värillisen tekstin, 
@@ -33,19 +31,19 @@
 
 
 \begin{document}
-
+\ddmmyyyydate %muuttaa (yhdessä dateseparatorin vaihtamisen kanssa) today-komennon muotoilun suomalaiseksi: DD.MM.YYYY
 \pagestyle{empty} 
 \pagenumbering{none}
 [Kurssi] \hfill Nimi: Olli Väisänen\\%KURSSIN NIMI!
-[Syksy/Kevät 201X] \hfill e-mail: \email \\
-Harjoitus X \hfill \\%HARJOITUKSEN NUMERO!
+Syksy/Kevät 201X \hfill e-mail: \email \\
+Harjoitus X \hfill Opiskelijanro: XXXXXXXXX \\%HARJOITUKSEN NUMERO!
 
 \begin{enumerate}[Teht 1.] \itemsep12pt
 	\item %Tehtävä 1, seuraavat tehtävät jälleen itemeinä.
-		%\begin{enumerate}[(a)] \itemsep8pt
-			%Tähän tehtävän osat a), b), c), etc. itemeinä.
-				%\begin{enumerate}[(i)] \itemsep6pt
-					%Jos tehtävällä vielä aliosia, niin jatketaan enumerateja...
+		%\begin{enumerate} \itemsep8pt
+			%\item%Tähän tehtävän osat a), b), c), etc. itemeinä.
+				%\begin{enumerate} \itemsep6pt
+					%\item %Jos tehtävällä vielä aliosia, niin jatketaan enumerateja...
 				%\end{enumerate}
 		%\end{enumerate}
 \end{enumerate}
@@ -55,6 +53,8 @@ Kappaleen vaihto tyhjällä rivillä!:
 
 Jos jossain kohdassa ei saa vaihtaa riviä, käytä tildeä välilyönnin sijaan:~
 Esim: Tulokseksi saatiin~23~metriä~\cite{MAOL}~.
+
+Muista: Lainausmerkit näin ``lainaus''
 
 Dokumentin sisäiset viitteet:
 \label{avain}-komennolla voidaan kuvien ja kaavojen ym. lisäksi labeloida melkein kaikkea (esim. kokonaisia kappaleita, osioita, ym.).

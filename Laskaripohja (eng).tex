@@ -3,16 +3,20 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel} %katso että kääntäjä osaa kans tavuttaa, jos useita kieliä, default-kieli viimeiseksi
-\usepackage{amsmath}
+\usepackage{lmodern} %hiukan uudempi, parempi versio LaTeXin perusfontista
+\usepackage{textcomp} %tarjoaa ylimääräisiä tekstisymboleja, kuten \texteuro, \textcelsius
+\usepackage{mathtools, amssymb} %uudempi matematiikkapaketti mathtools (sisältää amsmathin), amssymb lisää matikkasymboleita
 \usepackage{amsfonts}
-\usepackage{icomma} %käytä pilkkua kaavoissa ja taulukoissa
-\usepackage{enumerate}
-\usepackage[hmargin={35mm, 35mm}, vmargin={25mm, 25mm}]{geometry} %en ole varma tarviiko
-\usepackage{hyperref} %pdf-tiedostoon viittaukset hyperlinkkeinä, linkkien ympärille tulevat jutut eivät tule tulosteeseen.
-\usepackage{verbatim} %pitkiin kommentteihin...
-\usepackage{url} %jotta LaTeX ymmärtää url-osoitteet (\url-komento)
-\usepackage{graphicx}
-
+%\usepackage{icomma} %käytä pilkkua kaavoissa ja taulukoissa (Suom. käytäntö)
+\usepackage{cancel} %Termien yliviivaus matematiikkatilassa (komennolla \cancel{})
+\usepackage[shortlabels]{enumitem} %enumitem korvaa vanhentuneen enumeraten, shortlabels mahdollistaa labelien muokkauksen
+\usepackage[hmargin={35mm, 35mm}, vmargin={25mm, 25mm}]{geometry} %marginaalien säätöä...
+\usepackage[pdftex]{graphicx} %kuvaajapaketti
+\usepackage[pdftex]{color} %mahdollistaa värillisen tekstin, 
+\usepackage[pdftex]{hyperref} %pdf-tiedostoon viittaukset hyperlinkkeinä, linkkien ympärille tulevat jutut eivät tule tulosteeseen. Lisää myös kätevät linkkipaketit (ks. käyttö lopusta)
+\usepackage{verbatim} %korjaa verbatim-ympäristön bugeja ja lisää comment-ympäristön pitkille kommenteille
+\usepackage[footnotesize, bf]{caption} %kuvien ja taulukoiden kuvatekstin muokkaus (esim. pienempi fontti, lihavointi)
+\usepackage{datetime} %muuttaa today-komennon muotoilua
 
 \newcommand{\degree}{^{\circ}} %Astemerkki matematiikkatilassa
 \renewcommand{\vec}{\mathbf} %Vektorin ylänuolen sijasta vektorit lihavoituna
@@ -27,21 +31,21 @@
 
 
 \begin{document}
-
+%\ddmmyyyydate %muuttaa (yhdessä dateseparatorin vaihtamisen kanssa) today-komennon muotoilun suomalaiseksi: DD.MM.YYYY
 \pagestyle{empty} 
 \pagenumbering{none}
 [NAME OF THE COURSE] \hfill Name: Olli Väisänen\\%Kurssin nimi
-[Spring/Fall 20XX] \hfill e-mail: \href{mailto:olli.vaisanen@helsinki.fi}{olli.vaisanen@helsinki.fi} \\
-Exercise  \hfill  Student id: 013326836 \\%HARJOITUKSEN NUMERO!
+Spring/Fall 20XX \hfill e-mail: \href{mailto:olli.vaisanen@helsinki.fi}{olli.vaisanen@helsinki.fi} \\
+Exercise X \hfill  Student id: XXXXXXXX \\%HARJOITUKSEN NUMERO!
 
 \begin{enumerate}[Prob. 1.] \itemsep12pt
 	\item %Tehtävä 1, seuraavat tehtävät jälleen itemeinä.
-		%\begin{enumerate}[(a)] \itemsep8pt
-			%Tähän tehtävän osat a), b), c), etc. itemeinä.
-				%\begin{enumerate}[(i)] \itemsep6pt
-					%Jos tehtävällä vielä aliosia, niin jatketaan enumerateja...
-				%\end{enumerate}
-		%\end{enumerate}
+%		\begin{enumerate} \itemsep8pt
+%			\item %Tähän tehtävän osat a), b), c), etc. itemeinä.
+%				\begin{enumerate} \itemsep6pt
+%					\item %Jos tehtävällä vielä aliosia, niin jatketaan enumerateja...
+%				\end{enumerate}
+%		\end{enumerate}
 \end{enumerate}
 
 \begin{comment}
@@ -49,6 +53,8 @@ Kappaleen vaihto tyhjällä rivillä!:
 
 Jos jossain kohdassa ei saa vaihtaa riviä, käytä tildeä välilyönnin sijaan:~
 Esim: Tulokseksi saatiin~23~metriä~\cite{MAOL}~.
+
+Muista: Lainausmerkit näin ``lainaus''
 
 Dokumentin sisäiset viitteet:
 \label{avain}-komennolla voidaan kuvien ja kaavojen ym. lisäksi labeloida melkein kaikkea (esim. kokonaisia kappaleita, osioita, ym.).
