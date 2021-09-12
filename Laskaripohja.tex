@@ -1,4 +1,4 @@
-\documentclass[a4paper, twoside, 12pt]{artikel3} %jos artikel3 ei toimi, käytä article
+\documentclass[a4paper, twoside, addpoints, 12pt]{exam} %jos artikel3 ei toimi, käytä article
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -37,24 +37,50 @@
 \newcommand{\aalto}[1]{\left{ #1  \right}}
 \newcommand{\haka}[1]{\left[ #1 \right]}
 
+\pagestyle{head}	%HUOM! jos käyttää ilma pagenumberingia (none), niin exam documentclass menee rikki (haluaa käyttää numerointia monessa komennossa...), empty toimii
+\firstpageheader{[KURSSIN NIMI]\\	%headerin vasen laita
+					Kevät/Syksy 20XX\\
+					Harjoitus X} %HARJOITUKSEN NUMERO!
+					{}								%headerin keskiosa
+					{Nimi: Olli Väisänen\\			%headerin oikea laita
+					e-mail: \email \\
+					Opiskelijanro: XXXXXX}
+\firstpageheadrule
 
 \begin{document}
 \ddmmyyyydate %muuttaa (yhdessä dateseparatorin vaihtamisen kanssa) today-komennon muotoilun suomalaiseksi: DD.MM.YYYY
-\pagestyle{empty} 
-\pagenumbering{none}
-[Kurssi] \hfill Nimi: Olli Väisänen\\%KURSSIN NIMI!
-Syksy/Kevät 201X \hfill e-mail: \email \\
-Harjoitus X \hfill Opiskelijanro: XXXXXXXXX \\%HARJOITUKSEN NUMERO!
 
-\begin{enumerate}[Teht 1.] \itemsep12pt
-	\item %Tehtävä 1, seuraavat tehtävät jälleen itemeinä.
-		%\begin{enumerate} \itemsep8pt
-			%\item%Tähän tehtävän osat a), b), c), etc. itemeinä.
-				%\begin{enumerate} \itemsep6pt
-					%\item %Jos tehtävällä vielä aliosia, niin jatketaan enumerateja...
-				%\end{enumerate}
-		%\end{enumerate}
-\end{enumerate}
+%%%%%%Header jos laskaripohja on documentclass article tai artikel3
+%\pagestyle{empty} 
+%\pagenumbering{none}
+%[Kurssi] \hfill Nimi: Olli Väisänen\\%KURSSIN NIMI!
+%Syksy/Kevät 201X \hfill e-mail: \email \\
+%Harjoitus X \hfill Opiskelijanro: XXXXXXXXX \\%HARJOITUKSEN NUMERO!
+
+\begin{questions}	%exam dokumenttiluokan ympäristö, numeroi tehtävät järkevämmin (tosin enumitems ois tehny tän kyl kans..)
+
+	\question 
+	
+%	\question
+%	\begin{parts}
+%		\part
+%		\begin{subparts}
+%			\subpart
+%		\end{subparts}
+%	\end{parts}
+
+\end{questions}
+
+%%%%%%Tehtävien numerointi jos documenttiluokka on article tai artikel3
+%\begin{enumerate}[Teht 1.] \itemsep12pt
+%	\item %Tehtävä 1, seuraavat tehtävät jälleen itemeinä.
+%		%\begin{enumerate} \itemsep8pt
+%			%\item%Tähän tehtävän osat a), b), c), etc. itemeinä.
+%				%\begin{enumerate} \itemsep6pt
+%					%\item %Jos tehtävällä vielä aliosia, niin jatketaan enumerateja...
+%				%\end{enumerate}
+%		%\end{enumerate}
+%\end{enumerate}
 
 \begin{comment}
 Kappaleen vaihto tyhjällä rivillä!:
