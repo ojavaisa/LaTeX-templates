@@ -1,0 +1,296 @@
+\documentclass[12pt]{beamer} 
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[finnish]{babel} %katso että kääntäjä osaa kans tavuttaa, jos useita kieliä, default-kieli viimeiseksi
+\usepackage{lmodern} %hiukan uudempi, parempi versio LaTeXin perusfontista
+\usepackage{textcomp} %tarjoaa ylimääräisiä tekstisymboleja, kuten \texteuro, \textcelsius
+\usepackage{amsmath} %American mathematical societyn parannus matikkapakettiin
+\usepackage{amssymb} %Lisää matikkasymboleita...
+\usepackage{icomma} %käytä pilkkua kaavoissa ja taulukoissa (Suom. käytäntö)
+\usepackage{enumerate}
+%\usepackage[hmargin={35mm, 35mm}, vmargin={25mm, 25mm}]{geometry} %marginaalien säätöä...
+\usepackage{graphicx} %kuvaajapaketti
+\usepackage{color} %mahdollistaa värillisen tekstin, 
+%\usepackage[pdftex]{hyperref} %pdf-tiedostoon viittaukset hyperlinkkeinä, linkkien ympärille tulevat jutut eivät tule tulosteeseen. Lisää myös kätevät linkkipaketit (ks. käyttö lopusta)
+\usepackage{verbatim} %korjaa verbatim-ympäristön bugeja ja lisää comment-ympäristön pitkille kommenteille
+\usepackage[numbers]{natbib} %joustavampaan viittailuun, ks lopusta \citet ja \citep 
+%\usepackage[footnotesize, bf]{caption} %kuvien ja taulukoiden kuvatekstin muokkaus (esim. pienempi fontti, lihavointi)
+\usepackage{datetime} %muokkaa \today komennon formaattia
+\usepackage{coffee4} %lisää kahvitahrat selkkariin automaattisesti! ks. käyttö lopusta!
+
+\newcommand{\degree}{^{\circ}} %Astemerkki matematiikkatilassa
+%\renewcommand{\vec}{\mathbf} %Vektorin ylänuolen sijasta vektorit lihavoituna
+\newcommand{\email}{\href{mailto:olli.vaisanen@helsinki.fi}{olli.vaisanen@helsinki.fi}} %Oma email-osoite komentona :)
+\renewcommand{\dateseparator}{.} %Vaihtaa \today-komennon päivämääräerotinta (datetime-paketin default on '/' )
+\newcommand{\kaari}[1]{\left( #1 \right)}
+\newcommand{\aalto}[1]{\left{ #1  \right}}
+\newcommand{\haka}[1]{\left[ #1 \right]}
+
+\begin{document}
+
+\dmyyyydate %Vaihtaa \today-komennon formaatin muotoa (datetime-paketti)
+
+%Otsikkosivun tiedot ja otsikkosivu
+\author{Olli Väisänen}
+\title{Esitelmän otsikko}
+%\subtitle{Alaotsikko jos on}
+\date{\today} %ajankohta kun esitys on
+%\institute{Helsingin yliopisto, Fysiikan laitos}
+%\titlegraphic{\includegraphics[]{} } %etusivulle tuleva kuva
+\begin{frame}[plain]
+	\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Kalvon otsikko}
+\framesubtitle{Alaotsikko}
+Tekstiä ihan normaalisti...
+
+\end{frame}
+
+\begin{comment}
+Beamer-ympäristön ohjeita
+
+Esimerkki beamer-luokan overlay-argumentista (käytettynä itemize-ympäristössä), jolla jutut näkyvät vain tietyillä sivuilla kalvoa:
+\begin{itemize}
+	\item<1> Tämä näkyy vain ekalla sivulla.
+	\item<2-> Tämä näkyy tokasta sivusta eteenpäin.
+	\item<1,3,5-> Myös tällainen onnistuu jos muka tarvitsee...
+\end{itemize}
+Komennolla \setbeamercovered voidaan määrittää miten piilotetut jutut näkyvät, esim. oletusargumentilla invisible poissa näkyvistä, transparent läpinäkyviä
+
+beamer määrittelee uuden huomiokomennon \alert{huomio} (oletuksena punainen) toimii myös overlayn kanssa, esim:
+Tekstin joukossa oleva \alert<4>{HUOM!} on punainen vain sivulla 4, eikä enää siitä eteenpäin.
+Toimii myös näin:
+	\item<alert@4> Jee jee!
+
+Laatikkoon tulevaa tekstiä saa useilla erilaisilla ympäristöillä kuten block, exampleblock ja alertblock. Pakollisena argumenttina laatikon otsikko. Esim:
+\begin{block}{Laatikon otsikko}
+Laatikkoon tulevaa tavaraa
+\end{block}
+Laatikolle voi myös antaa overlay-määreen, jolloin laatikko näkyy vain tietyllä sivulla.
+
+Kalvon jako palstoihin (esim. kuva ja tekstiä samalle sivulle) onnistuu ympäristöllä columns, jonka sisään jokaista palstaa varten luodaan column-ympäristö, jonka pakollisena argumenttina on palstan leveys.
+Columns-ympärisölle voi myös antaa valinnaisena argumenttina koko palstajoukon leveyden. Oletuksena palstajoukko täyttää koko sivun. Tekstileveyden saa joko komennolla totalwidth=\textwidth tai vain onlytextwidth. 
+Palstojen tasaus voidaan antaa columns- tai column-ympäristölle valinnaisilla argumenteilla c (keskelle), T (ylälaitaan) tai b (alalaitaan).
+Esimerkki:
+\begin{columns}[c, onlytextwidth]
+\begin{column}{0.39\textwidth}
+	\includegraphics[width=12em]{Kuvatiedosto} 
+\end{column}
+\begin{column}{0.58\textwidth}
+	\begin{itemize}
+		\item Pointteja viereisestä kuvasta. 
+		\item Eikös ole hieno kuva tuossa?
+	\end{itemize}
+\end{column}
+\end{columns}
+
+Esityksen sisällä homma voidaan jakaa kappaleisiin normaalisti \section{}- ja \subsection{}-komennoilla. Sisällysluettelot saa normaalisti \tableofcontents-komennolla, mutta beamerissa komento ottaa valinnaisen argumentin, esim.
+currentsection - Vain nykyisen kappaleen sisältö näytetään, muut läpinäkyvinä
+currentsubsection - Sama alakappaleelle
+pausesections - Sisällysluettelo näytetään kappale kerrallaan
+pausesubsections - Sama alakappaleille 
+
+\end{comment}
+
+\begin{comment}
+Kappaleen vaihto tyhjällä rivillä!:
+
+Jos jossain kohdassa ei saa vaihtaa riviä, käytä tildeä välilyönnin sijaan:~
+Esim: Tulokseksi saatiin~23~metriä~\cite{MAOL}~.
+
+Typografiaa: eripituiset viivat
+tavuviiva - (vain tavuttaessa)
+väliviivä -- (esim. "vuosina 1999 -- 2004)
+ajatusviiva --- (???)
+
+Kirjallisuusviittaus: \cite{avain}
+Viittaa thebibliographyn viitteeseen: \bibitem{avain}
+Kannattaa käyttää tildeä kuten yllä!
+
+\citet[]{} lisää tekijöiden nimet (!) ja viittauksen tekstiin (optiona tekstiä viitaukseen, esim. luku tai sivunrot)
+\citep[][]{} voi lisätä tekstiä normaalin numeroviittauksen ympärille, ensin taakse ja sitten eteen (esim. \citep[s. 120-143]{avain}-> [3, s. 120-143], \citep[ks.][]{avain}-> [ks. 3])
+
+Dokumentin sisäiset viitteet:
+\label{avain}-komennolla voidaan kuvien ja kaavojen ym. lisäksi labeloida melkein kaikkea (esim. kokonaisia kappaleita, osioita, ym.).
+Labelin kohteeseen voidaan viitata \ref{avain}-komennolla. \eqref{eq:avain} kaavoille (laittaa sulut viittauksen ympärille)
+\pageref{avain}-komennolla saadaan viitattavan kohteen sivunumerokin!
+
+
+Matematiikka:
+
+Tekstin osana:
+Komennolla $Matematiikkaa...$ saadaan matematiikkaa ladottuna tekstin sekaan
+
+Erillisinä kaavoina:
+\begin{equation} 
+	\label{eq:avain}
+	Matematiikkaa...
+\end{equation}
+Kaava sijoitetaan erikseen ja numeroidaan. Numeroimaton versio saadaan equation*:llä. 
+Kaavaan viitataan: \eqref{eq:avain}, esim: ...keskiarvo saadaan kaavalla~\eqref{eq:karvo}~.
+Kaavaan saadaan tarvittaessa tekstin tavoin muotoiltuja merkkejä (esim. pilkku ennen missä-sanaa)
+komennolla \text{teksti}, esim: \text{,}
+Monen rivin kaava saadaan käyttämällä multiline-ympäristöä equation-ympäristön sijaan. Monen rivin kaavassa voidaan
+vaihtaa riviä \\-komennolla
+
+\begin{align} 
+	3x+2y&=3\\
+	-2x&=4y+7\notag %notagilla voidaan jättää yksi yhtälö numeroimatta
+\end{align} %align-ympäristöllä saa kohdistettuja yhtälöryhmiä, &-merkillä merkitään kohdistuskohta, \\ vaihtaa riviä numeroi yhtälöt, align*-ympäristö jättää kaikista numeroinnit
+
+f(x) =
+\begin{cases} 
+0 & \text{ jos } x<0 \\
+x & \text{ jos } 0\le x \le 0 \\
+1 & \text{ jos } 1 > x
+\end{cases} 
+%cases-ympäristöllä saadaan paloittain määritelty funktio, sitä pitää käyttää jonkin toisen matikkaympäristön sisällä. Huomaa kiinnitysmerkit & sekä välit \text-komennon sisällä
+
+\begin{pmatrix}
+a & b & c \\
+d & e & f
+\end{pmatrix} 
+%pmatrix luo matriisin (pyöreät sulut), bmatrix tekee hakasulkumatriiseja, etc
+
+\left(\begin{array}{c|cc}
+a & b & c \\
+\hline d & e & f
+\end{array}\right) %array on vanha tapa luoda matriiseja, sillä saadaan mm. lohkomatriiseja edellä esitetyllä tavalla
+
+Matematiikan komentoja:
+\: -komennolla saadaan matikkatilassa pienen välin merkkien väliin
+\, \quad ja \qquad antavat eripituisia välejä matikkatilassa, \! vähentää merkkien välistä tilaa, voidaan käyttää esim moni-integraalien kanssa tiivistämään merkintöjä, esim: \int\!\!\!\int
+Kreikkalaiset aakkoset: \ja aakkosen englanninkielinen nimi. Isolla alkukirjaimella iso, pienellä pieni aakkonen
+Esim: \alpha pikkualfalle, \Delta isolle deltalle
+_ alaindekseille ja ^ yläindekseille, voi yhdistellä vapaasti, eivät mene sekaisin. Pidemmät jutut aaltosulkuihin.
+Esim: x^2_{max}
+\infty äärettömän merkille
+Murtoluvut ja jakolaskut: \frac{}{}, aaltosulkuihin viivan ylä- ja alapuolille tulevat jutut. Osaa venyä fiksusti.
+Summamerkki: \sum_{alaindeksi}^{yläindeksi}
+Neliöjuuri: \sqrt{}, venyy järkevästi
+Järkevästi venyvät sulut: \left(, \right) sekä \left[, \right] ja \left{, \right}  
+Keskiarvoa merkitsevä viiva kirjaimen päälle: \bar{}
+Plusmiinus: \pm
+Noin yhtäsuuri kuin: \approx
+Pienempi tai yhtäsuuri kuin(?): \le
+Kertomerkki näkyviin: \times tai \cdot
+Doo-merkki: \partial
+Sopivasti venyvät merkit: \right ja \left (esim. \right), \left[, \right/, etc) pisteellä (.) voi rajata merkkiä
+
+Kuvien liittäminen:
+
+Leijuvainen kuva luodaan figure-ympäristöllä:
+\begin{figure}[sijoittelu]
+	\begin{center}
+		\includegraphics[määreitä?]{kuvatiedoston nimi}
+	\end{center}
+	\caption{kuvateksti}
+	\label{fig:avain}
+\end{figure}
+Ympäristö luo leijuvaisen kuvan jonka sijoittelusta kääntäjä päättää. Kuva numeroidaan ja 
+siihen voi viitata: \ref{fig:avain}. Kuvan sijoitteluun voi (yrittää) vaikuttaa sijoittelumääreillä:
+	h tähän
+	t jonkun läheisen sivun ylälaitaan
+	b jonkun läheisen sivun alalaitaan
+	p erilliselle leijuvaissivulle
+	! lisäämällä huutomerkin LaTeX ohittaa jotain sijoittelun rajoituksia
+Määreitä voi yhdistellä, esim: \begin{figure}[htp]. Järjestys vaikuttaa siihen missä järjestyksessä LaTeX kokeilee eri vaihtoehtoja
+\includegraphics-komennolle annettavilla määreillä voi mm. skaalata ja kääntää kuvaa:
+"angle="-määre kääntää kuvaajaa annetun astemäärän pos-neg kiertosuunta voimassa, 
+"width="-määre skaalaa kuvaajan annetun levyiseksi. Ymmärtää mm. \textwidth-komennon, eli skaalaa kuvan tekstin
+levyiseksi. Voi myäs käyttää esim: 0.75\textwidth
+HKuvia saa vierekkäin laittamalla peräkkäin \includegraphics-komentoja. Vierekkäin olevissa kuvissa leveyden
+täytyy olla riittävän pieni että ne mahtuvat (esim. 0.49\textwidth )!
+
+Taulukot:
+
+Leijuvainen taulukko luodaan tabular-ympäristöllä:
+\begin{table}[sijoittelu]
+	\caption{otsikko}
+	\begin{center}
+	\begin{tabular}{taulukon muotoilu}
+	Taulukko ja sen sisältö...
+	\end{tabular}
+	\end{center}
+	\label{tab:avain}
+\end{table}
+Taulukon muotoilu-kohtaan kirjoitetaan taulukon muotoilu sivusuunnassa:
+	| pystyviiva
+	r oikealle tasattu sarake
+	c keskelle tasattu sarake
+	l vasemmalle tasattu sarake
+Esim: \begin{tabular}{|c|lr|c|}
+Taulukko ja sen sisältö-kohtaan kirjoitetaan poikkiviivat: \hline sekä taulukon alkioiden sisällöt &-merkein
+eroteltuina. Rivin vaihto rivin viimeisen alkion jälkeen: \\
+Esim:	\hline
+	Mittaus & Massa (kg) & Tilavuus (\(m^2\)) & Tiheys (\(\frac{kg}{m^2}\)) \\
+	\hline
+	1 & massa1 & tilavuus1 & tiheys1 \\
+	2 & massa2 & tilavuus2 & tiheys2 \\
+	.
+	.
+	.
+	\hline
+Sarakkeiden tasauksen sai myös tehtyä jonkin merkin (esim. pilkun) kohdalle, mutta sen muoto pitää vielä tarkistaa.
+Leijuvaisen taulukon sijoittelussa on käytössä samat määreet kuin kuvien sijoittelussa.
+Taulukot numeroidaan ja niihin voi viitata: \ref{tab:avain}
+ 
+
+Kolme pistettä: \ldots
+
+
+Omien komentojen luonti:
+\newcommand{\RR}{\mathbb{R}} %voidaan luoda vain "lyhennysmerkkejä" TAI
+\newcommand{\MB}[2]{\mathbb{#1}-\mathbb{#2}} %näin voidaan luoda "funktion tavoin" toimivia komentoja. Hakasuluissa on argumenttien määrä ja #-merkillä merkataan argumenttinä saadut muuttujat
+Käyttö: Ensimmäiselle normaali \RR, jälkimmäiselle esim. \MB{R}{Y} (tässä tapauksessa matikkatilassa)
+\renewcommand{}{}-komennolla voi korvata LaTeXin komentoja uusilla.
+
+\tableofcontents %luo sisällysluettelon	
+\listoffigures %listaa dokumentissa olevat kuvat
+\listoftables %yllättäen listaa taulukot
+
+\selectlanguage{english} %Vaihda kieltä kesken dokumentin.
+
+\url{http://en.wikipedia.org/wiki/Scarlett_Johansson} %lisää linkin nettiosoitteeseen, komento tulee hyperref-paketissa
+\href{http://en.wikipedia.org/wiki/Scarlett_Johansson}{Scarlett} %linkki omalla tekstillä
+\href{mailto:email_osoite@domain.com}{email_osoite@domain.com} %linkki sähköpostin lähetykseen
+
+
+\footnote{Sivuhuomautus} %sivun sisäinen viite
+
+Numeroimattomat listat:
+\begin{itemize} %itemize-ympäristössä listan kohdan eteen tulevaa merkkiä voi muuttaa item-kohtaisesti hakasulkeisiin tulevalla merkillä (ks. seuraavassa)
+\item[-] Esko
+\item[a] on 
+\item kiki 
+\end{itemize}
+
+\begin{verbatim}
+ Muotoilematonta tekstiä:
+        esko     on     kiki.
+\end{verbatim}
+Rivillä verbatim ympäristö: \verb|C:\Windows\|
+\verb-komennossa ensimmäinen merkki on rajoitusmerkki (esim. \verb+ ... + ), \verb-komentoa tarvitsee yleensä
+kun pitää latoa kenoviivoja.
+
+Kahvitahrojen lisääminen (coffee3):
+Neljä erilaista kahvitahraa:
+\cofeAm{läpinäkyvyys}{koko}{kierto}{xoff}{yoff} %270 asteen kupin jälki
+\cofeBm{läpinäkyvyys}{koko}{kierto}{xoff}{yoff} %60 asteen kupin jälki
+\cofeCm{läpinäkyvyys}{koko}{kierto}{xoff}{yoff} %kaksi vaaleaa roisketta
+\cofeDm{läpinäkyvyys}{koko}{kierto}{xoff}{yoff} %värillinen tuplatahra
+
+Komentojen argumentteina on tahran läpinäkyvyys väliltä [0,1], tahran kokoskaala (normaali on 1),
+tahran kiertoaste väliltä [0,360] sekä paikka offsettina keskeltä (xoff, yoff).
+HUOM! Tahran lisäävä komento laitetaan sen sivun koodin sekaan, jonne se halutaan. 
+HUOM! Tahrat tulevat suurinpiirtein keskelle sivua ja ovat tekstin alla VAIN jos komento on 
+kirjoitettu sen osion (esim. \section) sisälle, jonka sivulla ne ovat. Tahrakomennon paikka voi siis
+joutua muokkaamaan / pakottaamaan sivunvaihdon osion kohdalle.
+
+
+\end{comment}
+
+\end{document}
